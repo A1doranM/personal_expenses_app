@@ -22,10 +22,10 @@ class MyHomePage extends StatelessWidget {
         title: Text("Home"),
       ),
       body: Column(
-        
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Container(
-            width: double.infinity,
             child: Card(
               color: Colors.green,
               child: Text('Chart'),
@@ -33,6 +33,7 @@ class MyHomePage extends StatelessWidget {
             ),
           ),
           Card(
+            color: Colors.red,
             child: Text('List of tx.'),
           ),
         ],

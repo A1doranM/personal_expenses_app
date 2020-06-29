@@ -30,20 +30,22 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text("Home"),
       ),
-      body: Column(
+      body: SingleChildScrollView(
+        child: Column(
 //        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Container(
-            width: double.infinity,
-            child: Card(
-              color: Colors.green,
-              child: Text('Chart'),
-              elevation: 5,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Container(
+              width: double.infinity,
+              child: Card(
+                color: Colors.green,
+                child: Text('Chart'),
+                elevation: 5,
+              ),
             ),
-          ),
-          UserTransaction(),
-        ],
+            UserTransaction(),
+          ],
+        ),
       ),
     );
   }

@@ -33,6 +33,12 @@ class MyHomePage extends StatelessWidget {
         id: 't5', title: 'Ethernet', amount: 9.69, date: DateTime.now()),
   ];
 
+  String title;
+  String amount;
+
+  final titleController = TextEditingController();
+  final amountController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,14 +46,45 @@ class MyHomePage extends StatelessWidget {
         title: Text("Home"),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+//        mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Container(
+            width: double.infinity,
             child: Card(
               color: Colors.green,
               child: Text('Chart'),
               elevation: 5,
+            ),
+          ),
+          Card(
+            elevation: 5,
+            child: Container(
+              padding: EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: <Widget>[
+                  TextField(
+                    decoration: InputDecoration(labelText: 'Title'),
+                    controller: titleController,
+//                    onChanged: (value) {
+//                      title = value;
+//                    },
+                  ),
+                  TextField(
+                    decoration: InputDecoration(labelText: 'Amount'),
+                    controller: amountController,
+//                    onChanged: (value) {
+//                      amount = value;
+//                    },
+                  ),
+                  FlatButton(
+                    child: Text('Add transaction'),
+                    textColor: Colors.purple,
+                    onPressed: () {},
+                  )
+                ],
+              ),
             ),
           ),
           Column(

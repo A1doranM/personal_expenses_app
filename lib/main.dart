@@ -1,56 +1,72 @@
 import 'package:flutter/material.dart';
-import 'package:personalexpensesapp/models/transaction.dart';
-import 'package:personalexpensesapp/widgets/new_transaction.dart';
-import 'package:personalexpensesapp/widgets/transaction_list.dart';
 
-void main() {
-  runApp(MyApp());
-}
+import './widgets/new_transaction.dart';
+import './widgets/transaction_list.dart';
+import './models/transaction.dart';
+
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Expense planner.",
+      title: 'Personal Expenses',
       theme: ThemeData(
-        primarySwatch: Colors.deepPurple
-      ),
+          primarySwatch: Colors.deepPurple,
+          accentColor: Colors.amber,
+          fontFamily: 'Quicksand',
+          textTheme: ThemeData.light().textTheme.copyWith(
+                headline6: TextStyle(
+                  fontFamily: 'OpenSans',
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
+              ),
+          appBarTheme: AppBarTheme(
+            textTheme: ThemeData.light().textTheme.copyWith(
+                  headline6: TextStyle(
+                    fontFamily: 'OpenSans',
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+          )),
       home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
+  // String titleInput;
+  // String amountInput;
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String title;
-  String amount;
-
   final List<Transaction> _userTransactions = [
-    Transaction(
-        id: 't1', title: 'New Shoes', amount: 69.69, date: DateTime.now()),
-    Transaction(
-        id: 't2', title: 'New Balls', amount: 100.69, date: DateTime.now()),
-    Transaction(
-        id: 't3', title: 'New t-shirts', amount: 29.69, date: DateTime.now()),
-    Transaction(
-        id: 't4',
-        title: 'Weekly Groceries',
-        amount: 39.69,
-        date: DateTime.now()),
-    Transaction(
-        id: 't5', title: 'Ethernet', amount: 9.69, date: DateTime.now()),
+    // Transaction(
+    //   id: 't1',
+    //   title: 'New Shoes',
+    //   amount: 69.99,
+    //   date: DateTime.now(),
+    // ),
+    // Transaction(
+    //   id: 't2',
+    //   title: 'Weekly Groceries',
+    //   amount: 16.53,
+    //   date: DateTime.now(),
+    // ),
   ];
 
-  void _addNewTransaction(String title, double amount) {
+  void _addNewTransaction(String txTitle, double txAmount) {
     final newTx = Transaction(
-        id: DateTime.now().toString(),
-        title: title,
-        amount: amount,
-        date: DateTime.now());
+      title: txTitle,
+      amount: txAmount,
+      date: DateTime.now(),
+      id: DateTime.now().toString(),
+    );
+
     setState(() {
       _userTransactions.add(newTx);
     });
@@ -59,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void _startAddNewTransaction(BuildContext ctx) {
     showModalBottomSheet(
       context: ctx,
-      builder: (bCtx) {
+      builder: (_) {
         return GestureDetector(
           onTap: () {},
           child: NewTransaction(onSubmit: _addNewTransaction),
@@ -73,7 +89,9 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Home"),
+        title: Text(
+          'Personal Expenses',
+        ),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.add),
@@ -83,20 +101,18 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: SingleChildScrollView(
         child: Column(
-//        mainAxisAlignment: MainAxisAlignment.spaceAround,
+          // mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Container(
               width: double.infinity,
               child: Card(
-                color: Colors.green,
-                child: Text('Chart'),
+                color: Colors.blue,
+                child: Text('CHART!'),
                 elevation: 5,
               ),
             ),
-            TransactionList(
-              transactions: _userTransactions,
-            ),
+            TransactionList(transactions: _userTransactions),
           ],
         ),
       ),

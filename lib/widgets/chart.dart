@@ -7,7 +7,7 @@ import '../models/transaction.dart';
 class Chart extends StatelessWidget {
   final List<Transaction> recentTransactions;
 
-  Chart({@required this.recentTransactions});
+  Chart(this.recentTransactions);
 
   List<Map<String, Object>> get groupedTransactionValues {
     return List.generate(7, (index) {
@@ -50,9 +50,9 @@ class Chart extends StatelessWidget {
             return Flexible(
               fit: FlexFit.tight,
               child: ChartBar(
-                label: data['day'],
-                spendingAmount: data['amount'],
-                spendingPctOfTotal: totalSpending == 0.0
+                data['day'],
+                data['amount'],
+                totalSpending == 0.0
                     ? 0.0
                     : (data['amount'] as double) / totalSpending,
               ),

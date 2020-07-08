@@ -122,7 +122,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       appBar.preferredSize.height -
                       mediaQuery.padding.top) *
                   0.7,
-              child: Chart(_recentTransactions),
+              child: Chart(recentTransactions: _recentTransactions),
             )
           : txListWidget
     ];
@@ -136,7 +136,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 appBar.preferredSize.height -
                 mediaQuery.padding.top) *
             0.3,
-        child: Chart(_recentTransactions),
+        child: Chart(recentTransactions: _recentTransactions),
       ),
       txListWidget
     ];
@@ -179,7 +179,8 @@ class _MyHomePageState extends State<MyHomePage> {
               appBar.preferredSize.height -
               mediaQuery.padding.top) *
           0.7,
-      child: TransactionList(_userTransactions, _deleteTransaction),
+      child: TransactionList(
+          transactions: _userTransactions, deleteTx: _deleteTransaction),
     );
 
     final pageBody = SafeArea(
